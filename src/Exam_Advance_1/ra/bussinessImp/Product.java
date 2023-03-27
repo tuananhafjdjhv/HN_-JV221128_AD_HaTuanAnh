@@ -97,8 +97,8 @@ public class Product implements IShop, Comparable<Product> {
     }
 
     @Override
-    public void inputData() {
-        Scanner scanner = new Scanner(System.in);
+    public void inputData(List<Catalog> list, Scanner scanner) {
+
         System.out.print("Enter product id: ");
         this.productId = scanner.nextInt();
         scanner.nextLine();
@@ -126,19 +126,18 @@ public class Product implements IShop, Comparable<Product> {
         System.out.println("Nhập trạng thái sản phẩm");
         this.productStatus = Boolean.parseBoolean(scanner.nextLine());
     }
-
     @Override
     public void displayData() {
         System.out.println("Mã sản phẩm: " + this.productId);
         System.out.println("Tên sản phẩm: " + this.productName);
         System.out.println("Danh mục sản phẩm: " + this.catalog.getCatalogName());
         System.out.println("Giá bán: " + this.exportPrice);
-        System.out.println("Trạng thái sản phẩm(true/false): " + (this.productStatus ? "Active" : "Inactive"));
+        System.out.println("Trạng thái sản phẩm(true/false): " + (this.productStatus ? "Active" : "inActive"));
     }
 
     @Override
     public int compareTo(Product p) {
-        return Float.compare(this.exportPrice, p.exportPrice);
+        return (int )(this.exportPrice- p.exportPrice);
     }
 }
 

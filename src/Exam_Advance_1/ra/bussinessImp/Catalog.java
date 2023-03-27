@@ -2,11 +2,10 @@ package Exam_Advance_1.ra.bussinessImp;
 
 import Exam_Advance_1.ra.bussiness.IShop;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Catalog implements IShop {
+public class Catalog implements IShop,Comparable<Catalog>{
     private int catalogId;
     private String catalogName;
     private int priority;
@@ -64,8 +63,8 @@ public class Catalog implements IShop {
     }
 
     @Override
-    public void inputData() {
-        Scanner scanner = new Scanner(System.in);
+    public void inputData(List<Catalog> list, Scanner scanner) {
+
         System.out.print("– Mã danh mục sản phẩm: ");
         catalogId = scanner.nextInt();
         scanner.nextLine(); // Consume newline left-over
@@ -77,12 +76,16 @@ public class Catalog implements IShop {
         System.out.print("– Mô tả danh mục: ");
         descriptions = scanner.nextLine();
         System.out.print("– Trạng thái danh mục (true/false): ");
-        catalogStatus = scanner.nextBoolean();
+        catalogStatus =Boolean.parseBoolean(scanner.nextLine()) ;
+    }
+    @Override
+    public void displayData() {
+        System.out.println("Mã danh mục: " + catalogId);
+        System.out.println("Tên danh mục sản phẩm\n: " + catalogName);
     }
 
     @Override
-    public void displayData() {
-        System.out.println("mã danh mục: " + catalogId);
-        System.out.println("à tên danh mục sản phẩm\n: " + catalogName);
+    public int compareTo(Catalog o) {
+        return this.priority - o.priority;
     }
 }
